@@ -13,12 +13,13 @@ module.exports = app => {
         if (req.params.id) user.id = req.params.id
 
         try {
-            existsOrError(user.name, 'Nome não informado')
-            existsOrError(user.email, 'E-mail não informado')
-            existsOrError(user.password, 'Senha não informada')
-            existsOrError(user.confirmPassword, 'Confirmação de senha inválida')
-            equalsOrError(user.password, user.confirmPassword,
-                'Senhas não conferem')
+            // validando uma chamada por vez
+            // existsOrError(user.name, 'Nome não informado')
+            // existsOrError(user.email, 'E-mail não informado')
+            // existsOrError(user.password, 'Senha não informada')
+            // existsOrError(user.confirmPassword, 'Confirmação de senha inválida')
+            // equalsOrError(user.password, user.confirmPassword,
+            //     'Senhas não conferem')
 
             // verifica se o email já existe
             const userFromDB = await app.db('users') //app.db = api do knex
@@ -26,8 +27,7 @@ module.exports = app => {
             if (!user.id) {
                 notExistsOrError(userFromDB, 'Usúario já cadastrado')
             } else if (userFromDb && userFromDb.id !== parseInt(user.id)
-                && userFromDb.email === user.email) {
-                // se tem id (update), verifica se outro usuário já tem o email
+                && userFromDb.email === user.email) {   // se tem id (update), verifica se outro usuário já tem o email
                 throw 'E-mail já cadastrado';
             }
         } catch (msg) {
