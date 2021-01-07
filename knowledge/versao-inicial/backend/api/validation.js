@@ -3,16 +3,16 @@ module.exports = app => {
         if (!value) throw msg
         if (Array.isArray(value) && value.length === 0) throw msg
         if (typeof value === 'string' && !value.trim()) throw msg
-        if (Array.isArray(value)) { //validando usando uma array
-            for (const v of value) {
-                existsOrError(user.name, 'Nome não informado')
-                existsOrError(user.email, 'E-mail não informado')
-                existsOrError(user.password, 'Senha não informada')
-                existsOrError(user.confirmPassword, 'Confirmação de senha inválida')
-                equalsOrError(user.password, user.confirmPassword,
-                    'Senhas não conferem')
-            }
-        }
+        // if (Array.isArray(value)) { //validando usando uma array
+        //     for (const v of value) {
+        //         existsOrError(user.name, 'Nome não informado')
+        //         existsOrError(user.email, 'E-mail não informado')
+        //         existsOrError(user.password, 'Senha não informada')
+        //         existsOrError(user.confirmPassword, 'Confirmação de senha inválida')
+        //         equalsOrError(user.password, user.confirmPassword,
+        //             'Senhas não conferem')
+        //     }
+        // }
     }
 
     function notExistsOrError(value, msg) {

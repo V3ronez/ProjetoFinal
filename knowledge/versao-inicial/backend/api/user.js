@@ -14,12 +14,12 @@ module.exports = app => {
 
         try {
             // validando uma chamada por vez
-            // existsOrError(user.name, 'Nome não informado')
-            // existsOrError(user.email, 'E-mail não informado')
-            // existsOrError(user.password, 'Senha não informada')
-            // existsOrError(user.confirmPassword, 'Confirmação de senha inválida')
-            // equalsOrError(user.password, user.confirmPassword,
-            //     'Senhas não conferem')
+            existsOrError(user.name, 'Nome não informado')
+            existsOrError(user.email, 'E-mail não informado')
+            existsOrError(user.password, 'Senha não informada')
+            existsOrError(user.confirmPassword, 'Confirmação de senha inválida')
+            equalsOrError(user.password, user.confirmPassword,
+                'Senhas não conferem')
 
             // verifica se o email já existe
             const userFromDB = await app.db('users') //app.db = api do knex
