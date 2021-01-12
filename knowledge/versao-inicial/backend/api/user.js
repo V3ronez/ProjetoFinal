@@ -25,7 +25,7 @@ module.exports = app => {
             const userFromDB = await app.db('users') //app.db = api do knex
                 .where({ email: user.email }).first()
             if (!user.id) {
-                notExistsOrError(userFromDB, 'Usúario já cadastrado')
+                notExistsOrError(userFromDB, 'Usuário já cadastrado')
             } else if (userFromDb && userFromDb.id !== parseInt(user.id)
                 && userFromDb.email === user.email) {   // se tem id (update), verifica se outro usuário já tem o email
                 throw 'E-mail já cadastrado';
@@ -67,5 +67,5 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    return { save, get, getById } //para a funcao save ficar visivel do lado de fora 
+    return { save, get, getById } //para as funções ficarem visiveis do lado de fora 
 }
